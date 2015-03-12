@@ -10,6 +10,9 @@ myApp.controller("FormsController",
      			FormsService.getForms($scope); // $scope.forms is set in the service.js because have issue in getting the return from httpCURDOperations. because of this limitation we are passing $scope to get function and setting it in the service layer 
 				}
 			//READ All user froms List Starts 
+			
+			//loads all the userForms on load of page
+			$scope.getAllUserFroms();
 	}
 );
 
