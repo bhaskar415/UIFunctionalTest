@@ -13,7 +13,6 @@ myApp.directive('userFormsNotUsed', function(){
 
 myApp.directive('userForms', function(){  
 var htmlTemplate = "<div>"+
-						"<button ng-click='getAllUserFroms()' class='btn btn-info btn-xs'><span class='glyphicon glyphicon-play'></span>All Forms</button>"+
 							"<button type='button' class='btn btn-success btn-xs' ng-click='addFormShowView()'><span class='glyphicon glyphicon-plus'></span>Form</button><br><br>"+
 							"<p><input type='text' ng-model='searchQuery' class='search-query' placeholder='Search'></p> "+
 						 "<table class='table table-striped '>"+
