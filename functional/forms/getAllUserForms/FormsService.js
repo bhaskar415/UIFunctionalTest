@@ -10,6 +10,7 @@ myApp.service(
 		var url = ConstructUrls.makeUrl(_AllApplicationSearchBaseUrl)
 
 		this.getForms = function($scope) {
+		alert(url);
 			httpCURDOperations.Get(url).then(
                             function( data ) {
 							$scope.forms = data._embedded.forms;
