@@ -16,6 +16,7 @@ myApp.config(function($routeProvider) {
 
 myApp.controller('layoutCtrl', function($scope) {
 
+  $scope.authenticated = true;
 
  });
 
