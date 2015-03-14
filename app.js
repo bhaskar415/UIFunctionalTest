@@ -1,7 +1,7 @@
 // created service so that we can use this service for setting up app level scope 
 var myApp = angular.module('myApp', ['Forms-Directive', 'ngRoute']);
 
-myApp.config(function($routeProvider) {
+myApp.config(function($routeProvider, $httpProvider) {
 
 	$routeProvider.when('/', {
 		templateUrl : 'home.html',
@@ -14,14 +14,98 @@ myApp.config(function($routeProvider) {
 
   })
 
-myApp.controller('layoutCtrl', function($scope) {
+myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location) {
 
-  $scope.authenticated = true;
+ // $scope.authenticated = true;
+  
+  
+  
+
+  var authenticate = function(credentials, callback) {
+
+    var headers = credentials ? {authorization : "Basic "
+        + btoa(credentials.username + ":" + credentials.password)
+    } : {};
+
+    $http.get('user', {headers : headers}).success(function(data) {
+      if (data.name) {
+        $rootScope.authenticated = true;
+      } else {
+        $rootScope.authenticated = false;
+      }
+      callback && callback();
+    }).error(function() {
+      $rootScope.authenticated = false;
+      callback && callback();
+    });
+
+  }
+
+  authenticate();  // called on page load
+  
+  $scope.credentials = {};
+  $scope.login = function() {
+      authenticate($scope.credentials, function() {
+        if ($rootScope.authenticated) {
+          $location.path("/");
+          $scope.error = false;
+        } else {
+          $location.path("/login");
+          $scope.error = true;
+        }
+      });
+  };
+
+
+  
+  
 
  });
 
 
-myApp.controller('navigation', function() {});
+myApp.controller('navigation', function($rootScope, $scope, $http, $location) {
+
+
+
+
+  var authenticate = function(credentials, callback) {
+
+    var headers = credentials ? {authorization : "Basic "
+        + btoa(credentials.username + ":" + credentials.password)
+    } : {};
+
+    $http.get('user', {headers : headers}).success(function(data) {
+      if (data.name) {
+        $rootScope.authenticated = true;
+      } else {
+        $rootScope.authenticated = false;
+      }
+      callback && callback();
+    }).error(function() {
+      $rootScope.authenticated = false;
+      callback && callback();
+    });
+
+  }
+
+  authenticate();  // called on page load
+  
+  $scope.credentials = {};
+  $scope.login = function() {
+      authenticate($scope.credentials, function() {
+        if ($rootScope.authenticated) {
+          $location.path("/");
+          $scope.error = false;
+        } else {
+          $location.path("/login");
+          $scope.error = true;
+        }
+      });
+  };
+
+
+
+});
 
  
  
