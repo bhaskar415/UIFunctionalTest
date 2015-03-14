@@ -10,7 +10,13 @@ myApp.config(function($routeProvider, $httpProvider) {
 		templateUrl : 'login.html',
 		controller : 'layoutCtrl'
 	}).otherwise('/');
+   
+   $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
+    $httpProvider.defaults.useXDomain = true;
 
+    //Remove the header containing XMLHttpRequest used to identify ajax call 
+    //that would prevent CORS from working
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
   })
 
