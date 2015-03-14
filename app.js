@@ -1,5 +1,5 @@
 // created service so that we can use this service for setting up app level scope 
-var myApp = angular.module('myApp', ['Forms-Directive']);
+var myApp = angular.module('myApp', ['Forms-Directive', 'ngRoute']);
 
 myApp.config(function($routeProvider) {
 
