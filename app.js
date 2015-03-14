@@ -12,11 +12,7 @@ myApp.config(function($routeProvider, $httpProvider) {
 	}).otherwise('/');
    
    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-    $httpProvider.defaults.useXDomain = true;
 
-    //Remove the header containing XMLHttpRequest used to identify ajax call 
-    //that would prevent CORS from working
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
   })
 
@@ -33,7 +29,7 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location) {
         + btoa(credentials.username + ":" + credentials.password)
     } : {};
     console.log(headers) ;
-    $http.get('http://192.168.1.18:8080/user', {headers : headers}).success(function(data) {
+    $http.get('http://192.168.1.18:8080/user',{headers : headers}).success(function(data) {
      if (data.name) {
         $rootScope.authenticated = true;
       } else {
