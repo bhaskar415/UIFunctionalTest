@@ -8,7 +8,7 @@ myApp.config(function($routeProvider, $httpProvider) {
 		controller : 'FormsController'
 	}).when('/login', {
 		templateUrl : 'login.html',
-		controller : 'navigation'
+		controller : 'layoutCtrl'
 	}).otherwise('/');
 
 
