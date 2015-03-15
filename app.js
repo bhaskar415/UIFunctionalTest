@@ -17,7 +17,11 @@ myApp.config(function($routeProvider, $httpProvider) {
     //Remove the header containing XMLHttpRequest used to identify ajax call 
     //that would prevent CORS from working
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
+ 
+ $httpProvider.defaults.headers.common = {};
+  $httpProvider.defaults.headers.post = {};
+  $httpProvider.defaults.headers.put = {};
+  $httpProvider.defaults.headers.patch = {};
   })
 
 myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q) {
@@ -76,11 +80,7 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
 
  });
 
-myApp.run(function($http){
-     $http.defaults.headers.common['Access-Control-Allow-Origin'] = "*";
-     $http.defaults.headers.common['Access-Control-Allow-Methods'] = "GET, POST, PUT, DELETE, OPTIONS";
-     $http.defaults.headers.common['Access-Control-Allow-Headers'] = "Authorization";
-})
+
 
 myApp.controller('layoutCtrl2', function($rootScope, $scope, $http, $location) {
 
