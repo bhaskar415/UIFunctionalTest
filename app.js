@@ -8,17 +8,11 @@ myApp.config(function($routeProvider, $httpProvider) {
 		controller : 'FormsController'
 	}).when('/login', {
 		templateUrl : 'login.html',
-		controller : 'layoutCtrl'
+		controller : 'layoutCtrl2'
 	}).otherwise('/');
    
    $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-    $httpProvider.defaults.useXDomain = true;
-     $httpProvider.defaults.withCredentials = true;
-
-    //Remove the header containing XMLHttpRequest used to identify ajax call 
-    //that would prevent CORS from working
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
+   
   })
 
 myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q) {
@@ -34,20 +28,9 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
         + btoa(credentials.username + ":" + credentials.password)
     } : {};
 	
-        $rootScope.authenticated = true;
-
     console.log(credentials) ;
 
-   $http({
-					method: "get",
-					url: 'http://John:password@192.168.1.18:8080/user',
-					params: {
-						action: "get"
-					},
-					headers: {
-						'Authorization': 'Basic bashe64usename:password'
-					}
-					}).success(function(data) {
+      $http.post('http://192.168.1.18:8080/user',  {headers : headers}).success(function(data) {
      if (data.name) {
       } else {
         $rootScope.authenticated = false;
@@ -62,6 +45,9 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
 	
 
   }
+  
+  
+  
 
   authenticate();  // called on page load
   
@@ -85,56 +71,34 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
  });
 
 
-myApp.controller('navigation', function($rootScope, $scope, $http, $location) {
+myApp.controller('layoutCtrl2', function($rootScope, $scope, $http, $location) {
 
 
+ $scope.login = function () {
+ 
 
 
-  var authenticate = function(credentials, callback) {
+            var postData = 'username=' + $scope.credentials.username + '&password=' + $scope.credentials.password ;
 
-    var headers = credentials ? {authorization : "Basic "
-        + btoa(credentials.username + ":" + credentials.password)
-    } : {};
-
-    $http.get('user', {headers : headers}).success(function(data) {
-      if (data.name) {
-        $rootScope.authenticated = true;
-      } else {
-        $rootScope.authenticated = false;
-      }
-      callback && callback();
-    }).error(function() {
-      $rootScope.authenticated = false;
-      callback && callback();
-    });
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-  }
-
-  authenticate();  // called on page load
-  
-  $scope.credentials = {};
-  $scope.login = function() {
-      authenticate($scope.credentials, function() {
-        if ($rootScope.authenticated) {
-          $location.path("/");
-          $scope.error = false;
-        } else {
-          $location.path("/login");
-          $scope.error = true;
+            $http({
+                method: 'POST',
+                url: 'http://192.168.1.18:8080/authenticate',
+                data: postData,
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "X-Login-Ajax-call": 'true'
+                }
+            })
+            .then(function(response) {
+                if (response.data == 'ok') {
+                    window.location.replace('/resources/calories-tracker.html');
+                }
+                else {
+                    $scope.vm.errorMessages = [];
+                    $scope.vm.errorMessages.push({description: 'Access denied'});
+                }
+            });
         }
-      });
-  };
 
 
 
