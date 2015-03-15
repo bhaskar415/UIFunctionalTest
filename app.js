@@ -32,6 +32,7 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
 
       $http.post('http://192.168.1.18:8080/user',  {headers : headers}).success(function(data) {
      if (data.name) {
+	 
       } else {
         $rootScope.authenticated = false;
       }
@@ -90,7 +91,11 @@ alert(postData);
                 }
             })
             .then(function(response) {
+			
+			console.log(response)
                 if (response.data == 'ok') {
+				        $rootScope.authenticated = true;
+
                      $location.path("/");
                 }
                 else {
