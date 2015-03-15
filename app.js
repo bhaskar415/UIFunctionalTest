@@ -31,7 +31,7 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
 
     console.log(credentials) ;
 	
-    $http.post('http:'+credentials.username + ':' + credentials.password'//192.168.1.18:8080/user', {headers : headers}).success(function(data) {
+    $http.post('http://John:password@192.168.1.18:8080/user').success(function(data) {
      if (data.name) {
         $rootScope.authenticated = true;
       } else {
