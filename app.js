@@ -79,7 +79,7 @@ myApp.controller('layoutCtrl2', function($rootScope, $scope, $http, $location) {
 
 
             var postData = 'username=' + $scope.credentials.username + '&password=' + $scope.credentials.password ;
-
+alert(postData);
             $http({
                 method: 'POST',
                 url: 'http://192.168.1.18:8080/authenticate',
@@ -91,11 +91,11 @@ myApp.controller('layoutCtrl2', function($rootScope, $scope, $http, $location) {
             })
             .then(function(response) {
                 if (response.data == 'ok') {
-                    window.location.replace('/resources/calories-tracker.html');
+                     $location.path("/");
                 }
                 else {
-                    $scope.vm.errorMessages = [];
-                    $scope.vm.errorMessages.push({description: 'Access denied'});
+                $location.path("/login");
+				$scope.error = true;
                 }
             });
         }
