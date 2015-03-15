@@ -97,7 +97,12 @@ alert(postData);
                 data: postData,
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
-                    "X-Login-Ajax-call": 'true'
+                    "X-Login-Ajax-call": 'true',
+					 'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods' : 'GET,OPTIONS',
+        'Access-Control-Allow-Headers' : 'X-Requested-With, Content-Type',
+        'Content-Type' : 'text/plain',
+        'Accept-Language' : 'en-US'
                 }
             })
             .then(function(response) {
