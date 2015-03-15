@@ -1,0 +1,29 @@
+ <!-- ADD New Table Form-->		  
+		 <div ng-show="addTableInd" class="panel panel-success">
+			  <div class="panel-heading">
+				<h3 class="panel-title">Add New Table</h3>
+			  </div>
+			  <div class="panel-body">
+				<div>		
+					<button type="btn btn-primary" class="btn btn-primary" ng-click="addForm(nt)">Add</button>
+					<button type="btn btn-primary" class="btn btn-primary" ng-click="addFormCancelView()">Cancle</button>
+					<button type="btn btn-primary" class="btn btn-primary" ng-click="addEmptyColumn()">Add Column</button>
+				</div>
+				<form ng-submit="addForm(nt)" >
+			 		<div class="col-lg-8">
+						<input class="form-control" placeholder="Enter Form Name" type="text" ng-model="nt.formName" required min="1" />
+						<input class="form-control" placeholder="Enter Created By " type="text" ng-model="nt.createdby" required min="1" />
+						 <!--Dynamic table Form using diffrenent columns and ng-table tag Starts-->
+							<table class='table'>
+							<tbody>
+							<textarea style="width: 300px; height: 150px;" ng-model="nt.fields" ng-list="&#10;" ng-trim="false"></textarea>
+							</tbody>
+							</table>
+						<!--Dynamic table Form using diffrenent columns and ng-table tag Ends-->
+						<!--<textarea ng-model="nt.columns" ng-list="&#10;" ng-trim="false"></textarea> -->
+						<pre>{{ nt | json }}</pre>                  
+					</div>
+				</form>				
+			 </div>
+		</div>
+<!-- ADD New Table Form-->			
