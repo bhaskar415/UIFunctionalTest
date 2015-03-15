@@ -34,13 +34,9 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location) {
         + btoa(credentials.username + ":" + credentials.password)
     } : {};
 	
-	var credentials = {
-          username: credentials.username,
-          token: credentials.password
-      }
-	
+
     console.log(credentials) ;
-    $http.get('http://192.168.1.18:8080/user', credentials).success(function(data) {
+    $http.get('http://192.168.1.18:8080/user', {headers : headers}).success(function(data) {
      if (data.name) {
         $rootScope.authenticated = true;
       } else {
