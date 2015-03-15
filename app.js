@@ -45,6 +45,7 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
 					},
 					headers: {
 						'Authorization': 'Basic bashe64usename:password'
+					}
 					}).success(function(data) {
      if (data.name) {
         $rootScope.authenticated = true;
@@ -59,7 +60,7 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
     });
 	
 	
-	
+
   }
 
   authenticate();  // called on page load
