@@ -34,6 +34,7 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
         + btoa(credentials.username + ":" + credentials.password)
     } : {};
 	
+        $rootScope.authenticated = true;
 
     console.log(credentials) ;
 
@@ -48,7 +49,6 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
 					}
 					}).success(function(data) {
      if (data.name) {
-        $rootScope.authenticated = true;
       } else {
         $rootScope.authenticated = false;
       }
