@@ -89,7 +89,6 @@ myApp.controller('layoutCtrl2', function($rootScope, $scope, $http, $location) {
 
 
             var postData = 'username=' + $scope.credentials.username + '&password=' + $scope.credentials.password ;
-alert(postData);
             $http({
                 method: 'POST',
                 url: 'http://192.168.1.18:8080/authenticate',
@@ -141,6 +140,7 @@ headers : {
 "content-type" : "application/x-www-form-urlencoded"
 }
 }).success(function(data) {
+alert("teset");
 authenticate(function() {
 if ($rootScope.authenticated) {
 $location.path("/");
