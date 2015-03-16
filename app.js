@@ -8,7 +8,7 @@ myApp.config(function($routeProvider, $httpProvider) {
 		controller : 'FormsController'
 	}).when('/login', {
 		templateUrl : 'login.html',
-		controller : 'layoutCtrl2'
+		controller : 'layoutCtrl3'
 	}).otherwise('/');
    
      $httpProvider.defaults.useXDomain = true;
