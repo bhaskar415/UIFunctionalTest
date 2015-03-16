@@ -13,7 +13,6 @@ myApp.config(function($httpProvider) {
 myApp.service(
 			"httpCURDOperations",
 			function($http, $q, $cookies) {				
-		console.log( $cookies.get('XSRF-TOKEN'));
 		this.Get = function( url ) {
 			var request = $q.defer();
 			$http({
