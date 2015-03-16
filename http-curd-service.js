@@ -20,10 +20,7 @@ myApp.service(
 					url: url,
 					params: {
 						action: "get"
-					},
-					headers: {
-                    'X-XSRF-TOKEN' : $cookieStore.get('XSRF-TOKEN')
-			    }
+					}
 				}).success(function(data){
 				request.resolve(data); // retriving particular element dynamically by passing the element name
 				}).error(function(){
