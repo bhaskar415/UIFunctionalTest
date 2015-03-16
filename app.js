@@ -81,7 +81,7 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
 
 
 
-myApp.controller('layoutCtrl2', function($rootScope, $scope, $http, $location) {
+myApp.controller('layoutCtrl2', function($rootScope, $scope, $http, $location, $cookies) {
 
 
  $scope.login = function () {
@@ -119,6 +119,7 @@ myApp.controller('layoutCtrl2', function($rootScope, $scope, $http, $location) {
 
 myApp.controller('layoutCtrl3', function($rootScope, $scope, $http, $location) {
 
+						$rootScope.authenticated = true;
 
 var authenticate = function(callback) {
 $http.get('http://192.168.1.18:8080/user').success(function(data) {
