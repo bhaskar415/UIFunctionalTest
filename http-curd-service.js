@@ -12,7 +12,7 @@ myApp.config(function($httpProvider) {
 
 myApp.service(
 			"httpCURDOperations",
-			function($http, $q, $cookies) {				
+			function($http, $q, $cookies, $cookieStore) {				
 		this.Get = function( url ) {
 			var request = $q.defer();
 			$http({
@@ -22,7 +22,7 @@ myApp.service(
 						action: "get"
 					},
 					headers: {
-                    'X-XSRF-TOKEN' : $cookies.get('XSRF-TOKEN')
+                    'X-XSRF-TOKEN' : $cookieStore.get('XSRF-TOKEN')
 			    }
 				}).success(function(data){
 				request.resolve(data); // retriving particular element dynamically by passing the element name
