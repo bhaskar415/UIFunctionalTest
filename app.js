@@ -39,18 +39,17 @@ myApp.controller('layoutCtrl', function($scope, $rootScope, $http, $location, $q
 	
     console.log(credentials) ;
 
-      $http.post('http://192.168.1.18:8080/user',  {headers : headers}).success(function(data) {
-     if (data.name) {
-	 
-      } else {
-        $rootScope.authenticated = false;
-      }
-      callback && callback();
-    }).error(function() {
-	alert("error");
-      $rootScope.authenticated = false;
-      callback && callback();
-    });
+      $http.post('http://192.168.1.18:8080/').success(function(data) {
+					if (data.name) {
+						$rootScope.authenticated = true;
+					} else {
+						$rootScope.authenticated = false;
+					}
+					callback && callback($rootScope.authenticated);
+				}).error(function() {
+					$rootScope.authenticated = false;
+					callback && callback(false);
+				});
 	
 	
 
@@ -97,13 +96,8 @@ alert(postData);
                 data: postData,
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
-                    "X-Login-Ajax-call": 'true',
-					 'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods' : 'GET,OPTIONS',
-        'Access-Control-Allow-Headers' : 'X-Requested-With, Content-Type',
-        'Content-Type' : 'text/plain',
-        'Accept-Language' : 'en-US'
-                }
+                    "X-Login-Ajax-call": 'true'
+			    }
             })
             .then(function(response) {
 			
@@ -123,6 +117,50 @@ alert(postData);
 
 
 });
+
+myApp.controller('layoutCtrl3', function($rootScope, $scope, $http, $location) {
+
+function($rootScope, $scope, $http, $location) {
+
+var authenticate = function(callback) {
+$http.get('user').success(function(data) {
+if (data.name) {
+$rootScope.authenticated = true;
+} else {
+$rootScope.authenticated = false;
+}
+callback && callback();
+}).error(function() {
+$rootScope.authenticated = false;
+callback && callback();
+});
+}
+
+$scope.login = function() {
+$http.post('http://192.168.1.18:8080/login', $.param($scope.credentials), {
+headers : {
+"content-type" : "application/x-www-form-urlencoded"
+}
+}).success(function(data) {
+authenticate(function() {
+if ($rootScope.authenticated) {
+$location.path("/");
+$scope.error = false;
+} else {
+$location.path("/login");
+$scope.error = true;
+}
+});
+}).error(function(data) {
+$location.path("/login");
+$scope.error = true;
+$rootScope.authenticated = false;
+})
+};
+
+
+});
+
 
  
  
