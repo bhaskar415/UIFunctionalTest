@@ -120,6 +120,7 @@ myApp.controller('layoutCtrl2', function($rootScope, $scope, $http, $location, $
 myApp.controller('layoutCtrl3', function($rootScope, $scope, $http, $location) {
 
 						$rootScope.authenticated = true;
+$scope.error = false;
 
 var authenticate = function(callback) {
 $http.get('http://192.168.1.18:8080/user').success(function(data) {
