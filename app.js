@@ -143,6 +143,11 @@ headers : {
 }
 }).success(function(data) {
 alert("teset");
+
+}).error(function(data) {
+$location.path("/login");
+$scope.error = true;
+$rootScope.authenticated = false;
 authenticate(function() {
 if ($rootScope.authenticated) {
 $location.path("/");
@@ -152,10 +157,6 @@ $location.path("/login");
 $scope.error = true;
 }
 });
-}).error(function(data) {
-$location.path("/login");
-$scope.error = true;
-$rootScope.authenticated = false;
 })
 };
 
