@@ -120,10 +120,9 @@ alert(postData);
 
 myApp.controller('layoutCtrl3', function($rootScope, $scope, $http, $location) {
 
-function($rootScope, $scope, $http, $location) {
 
 var authenticate = function(callback) {
-$http.get('user').success(function(data) {
+$http.get('http://192.168.1.18:8080/user').success(function(data) {
 if (data.name) {
 $rootScope.authenticated = true;
 } else {
