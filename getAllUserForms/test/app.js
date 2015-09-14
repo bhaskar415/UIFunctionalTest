@@ -1,4 +1,4 @@
-var myApp = angular.module('Menu-Directive');
+var myApp = angular.module('Menu-Directive', []);
 
 	
 	
