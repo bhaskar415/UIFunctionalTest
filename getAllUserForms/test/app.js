@@ -1,9 +1,9 @@
-var myApp = angular.module('Menu-Directive', []);
-.directive('menuLink', function(){  
-  return {
-    restrict: 'E', 
-    template: "<div><h2>Paracosm</h2><div>"   
-  };
+var myApp = angular.module('Menu-Directive', [])
+.directive('menuLink', function () {
+    return {
+        template: 'Name'
+    };
+});
 	
 	
 
