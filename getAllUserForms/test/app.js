@@ -1,5 +1,5 @@
 var myApp = angular.module('Menu-Directive', [])
-.directive('menuLink', function () {
+.directive('mySharedScope', function () {
     return {
         template: 'Name'
     };
