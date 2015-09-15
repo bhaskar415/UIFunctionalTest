@@ -22,13 +22,13 @@ htmlTemplate += "<\/md-button>";
       scope.isSelected = function() {
         return controller.isSelected(scope.section);
       };
-
+*/
       scope.focusSection = function() {
         // set flag to be used later when
         // $locationChangeSuccess calls openPage()
         controller.autoFocusContent = true;
       };
-	  */
+	  
     }
   };
 })
