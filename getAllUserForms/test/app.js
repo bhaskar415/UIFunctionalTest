@@ -35,15 +35,15 @@ htmlTemplate += "<\/md-button>";
 myApp.controller("MenuController",
 			function($scope) {
      
-			$scope.isSelected = function() {
+		//	$scope.isSelected = function() {
        // return controller.isSelected($scope.section);
-      };
+    //  };
 
-      $scope.focusSection = function() {
+   //   $scope.focusSection = function() {
         // set flag to be used later when
         // $locationChangeSuccess calls openPage()
-        controller.autoFocusContent = true;
-      };
+      //  controller.autoFocusContent = true;
+  //    };
 	}
 );
 
