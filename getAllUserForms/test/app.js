@@ -1,16 +1,17 @@
 var myApp = angular.module('Menu-Directive', [])
  .directive('menuLinkTemp', function() {
-var htmlTemplate =  '   <md-button  '  + 
- '       ng-class="{'active' : isSelected()}"  '  + 
- '       ui-sref="{{section.state}}"  '  + 
- '       ng-click="focusSection()">  '  + 
- '     {{section.name}}  '  + 
- '     <span class="md-visually-hidden"  '  + 
- '       ng-if="isSelected()">  '  + 
- '       current page  '  + 
- '     </span>  '  + 
- '  </md-button>  ' ;   
-   
+var htmlTemplate="";
+htmlTemplate += "<md-button";
+htmlTemplate += "    ng-class=\"{'active' : isSelected()}\"";
+htmlTemplate += "    ui-sref=\"{{section.state}}\"";
+htmlTemplate += "    ng-click=\"focusSection()\">";
+htmlTemplate += "  {{section.name}}";
+htmlTemplate += "  <span class=\"md-visually-hidden\"";
+htmlTemplate += "    ng-if=\"isSelected()\">";
+htmlTemplate += "    current page";
+htmlTemplate += "  <\/span>";
+htmlTemplate += "<\/md-button>";
+
   return {    
     restrict: 'E',
     template: htmlTemplate,
