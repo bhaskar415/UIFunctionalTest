@@ -44,6 +44,18 @@ myApp.controller("MenuController",
         // $locationChangeSuccess calls openPage()
       //  controller.autoFocusContent = true;
   //    };
+  
+   $scope.sections = [{
+            name: 'Getting Started',
+            state: 'settings',
+            type: 'link'
+          },
+          {
+              name: 'Demos',
+              state: "home",
+              type: 'link'
+            }
+          ];
 	}
 );
 
